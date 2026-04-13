@@ -17,6 +17,7 @@ const error = ref("");
 onMounted(async () => {
   try {
     const sessionId = route.query.session_id;
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     if (!sessionId) {
       error.value = "Invalid session";
@@ -35,7 +36,7 @@ onMounted(async () => {
 
     // Verify payment with backend
     const response = await axios.get(
-      `http://localhost:3000/api/payment/verify-payment?session_id=${sessionId}&userId=${authStore.user?._id}`,
+      `${apiUrl}/api/payment/verify-payment?session_id=${sessionId}&userId=${authStore.user?._id}`,
       {
         withCredentials: true,
         headers: {

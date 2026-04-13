@@ -14,6 +14,7 @@ const router = useRouter();
 const loading = ref(false);
 const error = ref("");
 
+const apiUrl = import.meta.env.VITE_API_URL;
 // Fetch cart items on mount
 onMounted(async () => {
   await cartStore.fetchCourses();
@@ -56,7 +57,7 @@ const createCheckoutSession = async () => {
     
     // Create checkout session
     const response = await axios.post(
-      "https://qdumy-server.onrender.com/api/payment/create-checkout-session",
+      `${apiUrl}/api/payment/create-checkout-session`,
       { 
         courses: cartItems,
         userId: authStore.user?._id

@@ -11,8 +11,9 @@ const courses = ref([]);
 const lecturer = ref([])
 const router = useRouter()
 const getEnrolledCourses = async () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const response = await axios.get(
-    `http://localhost:3000/api/courses/owned/${user.value._id}`,
+    `${apiUrl}/api/courses/owned/${user.value._id}`,
   );
   courses.value = response.data.ownedCourses;
 
