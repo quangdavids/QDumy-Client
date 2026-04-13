@@ -55,33 +55,33 @@ const owned = ref(false);
         <div class="flex justify-center space-x-2 items-center "></div>
 
         <div class="font-medium">
-          <div>
+          <div v-if="rating !== undefined">
             <span class="text-yellow-500">
               <i class="fa-solid fa-star mr-2"> </i>
             </span>
-            {{ rating.toFixed(2) }}
+            {{ (typeof rating === 'number' ? rating.toFixed(2) : rating) || 'N/A' }}
           </div>
         </div>
         <div class="font-medium">
-             <div>
+             <div v-if="noOfLessons !== undefined">
               <i class="fa-solid fa-book-open mr-2"> </i>
             {{ noOfLessons }} lectures
           </div>
         </div>
 
-        <div v-if="props.price === 0" class="text-green-500 font-bold  text-xl">
+        <div v-if="props.price === 0 || props.price === undefined" class="text-green-500 font-bold  text-xl">
            Free
         </div>
 
          <div v-else-if="props.price > 0" class="text-green-500 font-bold  text-xl">
-           {{ price }} $
+           ${{ price }}
         </div>
 
-        <div v-if="props.progress <=25" class="flex items-center gap-2.5">
+        <div v-if="props.progress !== undefined && props.progress <=25" class="flex items-center gap-2.5">
                 <div  class="w-full  bg-gray-200 rounded-full h-2.5">
                   <div
                     class="bg-red-600 h-2.5 rounded-full"
-                    :style="{ width: progress }"
+                    :style="{ width: `${progress || 0}%` }"
                   >
                 </div>
           
@@ -92,11 +92,11 @@ const owned = ref(false);
           </div>
 
           
-        <div v-if="props.progress > 25 && props.progress<=75" class="flex items-center gap-2.5">
+        <div v-if="props.progress !== undefined && props.progress > 25 && props.progress<=75" class="flex items-center gap-2.5">
                 <div  class="w-full  bg-gray-200 rounded-full h-2.5">
                   <div
                     class="bg-yellow-300 h-2.5 rounded-full"
-                    :style="{ width: progress }"
+                    :style="{ width: `${progress || 0}%` }"
                   >
                 </div>
           
@@ -106,11 +106,11 @@ const owned = ref(false);
                 </div>
           </div>
 
-          <div v-if="props.progress > 75 && props.progress<= 100" class="flex items-center gap-2.5">
+          <div v-if="props.progress !== undefined && props.progress > 75 && props.progress<= 100" class="flex items-center gap-2.5">
                 <div  class="w-full  bg-gray-200 rounded-full h-2.5">
                   <div
                     class="bg-green-500 h-2.5 rounded-full"
-                    :style="{ width: progress }"
+                    :style="{ width: `${progress || 0}%` }"
                   >
                 </div>
           
