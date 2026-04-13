@@ -35,7 +35,7 @@ const isSearched = ref(false)
 const queryCourses = ref([])
 const searchCourse = async (req, res) => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/courses/search/${user.value._id}?courseQuery=${searchQuery.value}`,
+    const response = await axios.get(`https://qdumy-server.onrender.com/api/courses/search/${user.value._id}?courseQuery=${searchQuery.value}`,
     )
     queryCourses.value = response.data.courses
     if (searchQuery.value.length === 0) {

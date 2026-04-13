@@ -52,7 +52,7 @@ export const useCourseStore = defineStore("course", {
         const data = { ...this.course }
         console.log(data)
         const response = await axios.post(
-          "http://localhost:3000/api/courses/",
+          "https://qdumy-server.onrender.com/api/courses/",
           data,
           // {
           //   headers: {

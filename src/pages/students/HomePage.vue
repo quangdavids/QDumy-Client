@@ -21,7 +21,7 @@ const route = useRouter();
 const latestCourses = ref([]);
 
 const getLatest = async () => {
-  const response = await axios.get("http://localhost:3000/api/courses/latest");
+  const response = await axios.get("https://qdumy-server.onrender.com/api/courses/latest");
   latestCourses.value = response.data.courses;
   console.log(latestCourses.value)
 };

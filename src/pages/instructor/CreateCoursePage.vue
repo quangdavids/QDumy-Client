@@ -59,7 +59,7 @@ console.log(route.params.courseId);
 const getCourse = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/courses/${route.params.courseId}`,
+      `https://qdumy-server.onrender.com/api/courses/${route.params.courseId}`,
     );
     console.log(response.data.course);
     course.value = response.data.course;
@@ -103,7 +103,7 @@ const courseData = ref({
 const instructor = ref("")
 const getInstructorDetail = async () => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/lecturer/${user.value._id}`);
+    const response = await axios.get(`https://qdumy-server.onrender.com/api/lecturer/${user.value._id}`);
     instructor.value = response.data.lecturer
     console.log(instructor.value)
   } catch (error) {
@@ -161,7 +161,7 @@ const addCourse = async () => {
     }
 
     const response = await axios.post(
-      "http://localhost:3000/api/courses",
+      "https://qdumy-server.onrender.com/api/courses",
       formData,
       {
         headers: {
@@ -216,7 +216,7 @@ const updateCourse = async () => {
 
     // FIX: Send formData directly as the request body
     const response = await axios.put(
-      `http://localhost:3000/api/courses/${route.params.courseId}`,
+      `https://qdumy-server.onrender.com/api/courses/${route.params.courseId}`,
       formData, // Send formData directly
       {
         headers: {

@@ -42,7 +42,7 @@ onMounted(async () => {
     }
 
     const response = await axios.get(
-      `http://localhost:3000/api/lecturer-data/${userId}`,
+      `https://qdumy-server.onrender.com/api/lecturer-data/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${authStore.token}`,
@@ -132,7 +132,7 @@ const editLecturerInfo = async () => {
     }
 
     const response = await axios.put(
-      `http://localhost:3000/lecturer/${userId}`,
+      `https://qdumy-server.onrender.com/lecturer/${userId}`,
       formData,
       {
         headers: {

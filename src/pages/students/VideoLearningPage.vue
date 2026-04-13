@@ -27,8 +27,8 @@ const getLessonData = async () => {
   try {
     const userId = user.value?._id;
     const url = userId 
-      ? `http://localhost:3000/api/courses/${courseId}/${userId}/lessons`
-      : `http://localhost:3000/api/courses/${courseId}/lessons`;
+      ? `https://qdumy-server.onrender.com/api/courses/${courseId}/${userId}/lessons`
+      : `https://qdumy-server.onrender.com/api/courses/${courseId}/lessons`;
     
     const response = await axios.get(url);
     console.log(response);
@@ -52,7 +52,7 @@ const getLessonData = async () => {
 const course = ref("")
 const getCourseData = async () => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/courses/${courseId}`)
+    const response = await axios.get(`https://qdumy-server.onrender.com/api/courses/${courseId}`)
     course.value = response.data.course
     console.log(response.data)
   } catch (err) {
@@ -63,7 +63,7 @@ const getCourseData = async () => {
 const time = ref("")
 const getTotalTime = async () => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/courses/total-time/${courseId}`)
+    const response = await axios.get(`https://qdumy-server.onrender.com/api/courses/total-time/${courseId}`)
     console.log(response.data.totalTime)
     time.value = response.data.totalTime
   } catch (err) {
@@ -126,7 +126,7 @@ const progressPercent = ref("");
 const handleVideoEnded = async () => {
   try {
     const response = await axios.post(
-      `http://localhost:3000/api/progress/mark-complete/${user.value._id}`,
+      `https://qdumy-server.onrender.com/api/progress/mark-complete/${user.value._id}`,
       {
         courseId: courseId,
         lessonId: courseLessons.value[playingIndex.value]._id,

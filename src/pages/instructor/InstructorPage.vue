@@ -22,7 +22,7 @@ const lecturerData = ref("");
 const getLecturer = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/lecturer-data/${user.value._id}`,
+      `https://qdumy-server.onrender.com/api/lecturer-data/${user.value._id}`,
     );
     lecturerData.value = response.data.lecturer;
     console.log(response.data);

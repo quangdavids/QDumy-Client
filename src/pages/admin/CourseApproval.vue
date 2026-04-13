@@ -38,7 +38,7 @@ const viewCourseDetails = function(courseId) {
 }
 const getCourses = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/admin/courses");
+    const response = await axios.get("https://qdumy-server.onrender.com/api/admin/courses");
     pendingCourses.value = response.data.pendingCourses;
     publishedCourses.value = response.data.publishedCourses;
     rejectedCourses.value = response.data.rejectedCourses
@@ -50,7 +50,7 @@ const getCourses = async () => {
 
 const publishCourse = async (courseId) => {
   try {
-    const response = await axios.put(`http://localhost:3000/api/admin/publish/${courseId}`)
+    const response = await axios.put(`https://qdumy-server.onrender.com/api/admin/publish/${courseId}`)
     console.log(response.data)
     getCourses()
   } catch (err) {
@@ -60,7 +60,7 @@ const publishCourse = async (courseId) => {
 
 const rejectCourse = async (courseId) => {
   try {
-    const response = await axios.put(`http://localhost:3000/api/admin/reject/${courseId}`)
+    const response = await axios.put(`https://qdumy-server.onrender.com/api/admin/reject/${courseId}`)
     console.log(response.data)
     getCourses()
   } catch (err) {

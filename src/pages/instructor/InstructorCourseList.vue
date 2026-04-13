@@ -35,10 +35,10 @@ console.log(user.value._id);
 const getLecturerCourseInfo = async () => {
   try {
     const lecturerInfo = await axios.get(
-      `http://localhost:3000/api/lecturer/${user.value._id}`,
+      `https://qdumy-server.onrender.com/api/lecturer/${user.value._id}`,
     );
     const response = await axios.get(
-      `http://localhost:3000/api/courses/list/${lecturerInfo.data.lecturer}?&page=${currentPage.value}&limit=${limit.value}`,
+      `https://qdumy-server.onrender.com/api/courses/list/${lecturerInfo.data.lecturer}?&page=${currentPage.value}&limit=${limit.value}`,
     );
     console.log(lecturerInfo.data);
     lecturer.value = response.data.courses;
@@ -81,7 +81,7 @@ const closeDialog = function () {
 const submitCourse = async () => {
   try {
     const response = axios.put(
-      `http://localhost:3000/api/courses/submission/${courseId.value}`,
+      `https://qdumy-server.onrender.com/api/courses/submission/${courseId.value}`,
     );
     console.log(response.data);
     getLecturerCourseInfo();
@@ -106,7 +106,7 @@ const closeDeleteDialog = function () {
 const deleteCourse = async () => {
   try {
     const response = axios.delete(
-      `http://localhost:3000/api/courses/${courseId.value}`,
+      `https://qdumy-server.onrender.com/api/courses/${courseId.value}`,
     );
     console.log(response.data);
     showDeleteDialog.value = false;

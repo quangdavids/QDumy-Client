@@ -99,7 +99,7 @@ const getLessonDetails = async () => {
   
   try {
     isEditMode.value = true;
-    const response = await axios.get(`http://localhost:3000/api/courses/${lessonId}/lessons/details`);
+    const response = await axios.get(`https://qdumy-server.onrender.com/api/courses/${lessonId}/lessons/details`);
     lessonDetail.value = response.data.lesson;
     lessonTitle.value = lessonDetail.value.title;
     lessonDescription.value = lessonDetail.value.content;
@@ -174,7 +174,7 @@ const addLesson = async () => {
     if (isEditMode.value && lessonId && courseId) {
       // Update existing lesson
       response = await axios.put(
-        `http://localhost:3000/api/${courseId}/lessons/${lessonId}`,
+        `https://qdumy-server.onrender.com/api/${courseId}/lessons/${lessonId}`,
         formData,
         {
           headers: { 
@@ -192,7 +192,7 @@ const addLesson = async () => {
     } else {
       // Create new lesson
       response = await axios.post(
-        `http://localhost:3000/api/courses/${courseId}/lessons`,
+        `https://qdumy-server.onrender.com/api/courses/${courseId}/lessons`,
         formData,
         {
           headers: { 

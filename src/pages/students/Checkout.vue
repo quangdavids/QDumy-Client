@@ -56,7 +56,7 @@ const createCheckoutSession = async () => {
     
     // Create checkout session
     const response = await axios.post(
-      "http://localhost:3000/api/payment/create-checkout-session",
+      "https://qdumy-server.onrender.com/api/payment/create-checkout-session",
       { 
         courses: cartItems,
         userId: authStore.user?._id

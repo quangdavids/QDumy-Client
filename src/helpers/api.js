@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = "http://localhost:3000/api/"
+const api = "https://qdumy-server.onrender.com/api/"
 
 export const getLatestCoursesAPI = async () => {
     const response = await axios.get(`${api}/latest` )

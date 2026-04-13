@@ -18,7 +18,7 @@ const getUserInfo = async () => {
   try {
     if (id) {
       const response = await axios.get(
-        `http://localhost:3000/api/user/info/${id}`,
+        `https://qdumy-server.onrender.com/api/user/info/${id}`,
       );
       userInfo.value = response.data.userData;
       console.log(userInfo.value);

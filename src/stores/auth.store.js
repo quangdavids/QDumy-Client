@@ -15,7 +15,7 @@ export const useAuthStore = defineStore("auth", {
     async register(data) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/auth/register",
+          "https://qdumy-server.onrender.com/auth/register",
           data,
           { withCredentials: true }
         );
@@ -36,7 +36,7 @@ export const useAuthStore = defineStore("auth", {
     async signIn(data) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/auth/login",
+          "https://qdumy-server.onrender.com/auth/login",
           data,
            { withCredentials: true }
         );
@@ -73,7 +73,7 @@ export const useAuthStore = defineStore("auth", {
     async logout() {
       try {       
         const response = await axios.post(
-        "http://localhost:3000/auth/logout",
+        "https://qdumy-server.onrender.com/auth/logout",
         {},
         { 
           withCredentials: true,
@@ -93,7 +93,7 @@ export const useAuthStore = defineStore("auth", {
     async refreshToken() {
       try {
         const response = await axios.post(
-          "http://localhost:3000/auth/refresh-token",
+          "https://qdumy-server.onrender.com/auth/refresh-token",
           {},
           { withCredentials: true }
         );

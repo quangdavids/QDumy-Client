@@ -46,7 +46,7 @@ const barData = ref({
 
 const getAnalyticData = async () => {
   const response = await axios.get(
-    `http://localhost:3000/api/user/analytic/${user.value._id}`,
+    `https://qdumy-server.onrender.com/api/user/analytic/${user.value._id}`,
   );
 
   console.log(response);
@@ -71,7 +71,7 @@ const progress = ref("");
 const getCompletedAndRemainingLessonsData = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/user/lesson-comparison/${user.value._id}`,
+      `https://qdumy-server.onrender.com/api/user/lesson-comparison/${user.value._id}`,
     );
     progress.value = response.data;
     completed.value = response.data.completed;

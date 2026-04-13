@@ -34,7 +34,7 @@ const languages = ref([
 const displayedLanguages = computed(() => {
   return showAll.value ? languages.value : languages.value.slice(0, 4);
 });
-const api = "http://localhost:3000/api/";
+const api = "https://qdumy-server.onrender.com/api/";
 
 const searchResults = ref([]);
 const level = ref([]);

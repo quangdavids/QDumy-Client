@@ -18,7 +18,7 @@ export const useNotificationStore = defineStore("notification", {
       const authStore = useAuthStore();
       if (!authStore.user) return;
 
-      this.socket = io("http://localhost:3000", {
+      this.socket = io("https://qdumy-server.onrender.com", {
         reconnection: true,
         reconnectionDelay: 1000,
         reconnectionDelayMax: 5000,
@@ -83,7 +83,7 @@ export const useNotificationStore = defineStore("notification", {
       try {
         const authStore = useAuthStore();
         const response = await axios.get(
-          `http://localhost:3000/api/notification/${authStore.user._id}`,
+          `https://qdumy-server.onrender.com/api/notification/${authStore.user._id}`,
         );
         this.notifications = response.data.notification;
         this.updateUnreadCount();
@@ -96,7 +96,7 @@ export const useNotificationStore = defineStore("notification", {
       try {
         const authStore = useAuthStore();
         const response = await axios.get(
-          `http://localhost:3000/api/notification/lecturer/${authStore.user._id}`,
+          `https://qdumy-server.onrender.com/api/notification/lecturer/${authStore.user._id}`,
         );
         this.notifications = response.data.notification;
         this.updateUnreadCount();
@@ -108,7 +108,7 @@ export const useNotificationStore = defineStore("notification", {
     async readNotification(notificationId) {
       try {
         const response = await axios.put(
-          `http://localhost:3000/api/notification/read/${notificationId}`,
+          `https://qdumy-server.onrender.com/api/notification/read/${notificationId}`,
         );
         console.log(response.data);
       } catch (err) {
@@ -119,7 +119,7 @@ export const useNotificationStore = defineStore("notification", {
     async deleteNotification(notificationId) {
       try {
         const response = await axios.delete(
-          `http://localhost:3000/api/notification/${notificationId}`,
+          `https://qdumy-server.onrender.com/api/notification/${notificationId}`,
         );
         console.log(response.data);
         this.notifications = this.notifications.filter((n) => n._id !== notificationId);

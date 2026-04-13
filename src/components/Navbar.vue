@@ -50,7 +50,7 @@ const handleSearch = async (e) => {
 const createLecturer = async (lecturerId) => {
   try {
     const response = await axios.post(
-      `http://localhost:3000/api/lecturer/${lecturerId}`,
+      `https://qdumy-server.onrender.com/api/lecturer/${lecturerId}`,
     );
     status.value = true;
     router.push({
@@ -86,7 +86,7 @@ const lecturer = ref("");
 const getLecturerStatus = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/lecturer/${user.value._id}`,
+      `https://qdumy-server.onrender.com/api/lecturer/${user.value._id}`,
     );
     if (response.status === 200 && response.data.lecturer) {
       status.value = true;

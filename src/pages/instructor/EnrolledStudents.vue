@@ -14,10 +14,10 @@ const isLoading = ref(false)
 const getLecturerCourseInfo = async () => {
   try {
     const lecturerInfo = await axios.get(
-      `http://localhost:3000/api/lecturer/${user.value._id}`,
+      `https://qdumy-server.onrender.com/api/lecturer/${user.value._id}`,
     );
     const response = await axios.get(
-      `http://localhost:3000/api/courses/list/${lecturerInfo.data.lecturer}`,
+      `https://qdumy-server.onrender.com/api/courses/list/${lecturerInfo.data.lecturer}`,
     );
     courses.value = response.data.courses;
     console.log(response.data.courses);
@@ -36,7 +36,7 @@ const getStudentsByCourse = async () => {
   isLoading.value = true
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/lecturer/students-by-courses/${selectedCourseId.value}?page=${currentPage.value}&limit=${limit.value}`,
+      `https://qdumy-server.onrender.com/api/lecturer/students-by-courses/${selectedCourseId.value}?page=${currentPage.value}&limit=${limit.value}`,
     );
     students.value = response.data.students;
     // currentPage.value = response.data.currentPage;

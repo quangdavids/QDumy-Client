@@ -39,7 +39,7 @@ const rejectedCourses = ref("");
 const doughnutDataCourse = ref({ labels: [], datasets: [] });
 const getCourses = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/admin/courses");
+    const response = await axios.get("https://qdumy-server.onrender.com/api/admin/courses");
     pendingCourses.value = response.data.pendingCourses;
     publishedCourses.value = response.data.publishedCourses;
     rejectedCourses.value = response.data.rejectedCourses;
@@ -66,7 +66,7 @@ const getCourses = async () => {
 const numberOfUsers = ref(0);
 const getNumberOfUsers = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/user/total");
+    const response = await axios.get("https://qdumy-server.onrender.com/api/user/total");
     numberOfUsers.value = response.data.users;
     console.log(numberOfUsers.value);
   } catch (err) {
@@ -81,7 +81,7 @@ const formatDay = (dateStr) => {
 
 const getDailyRevenue = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/daily-revenue");
+    const response = await axios.get("https://qdumy-server.onrender.com/api/daily-revenue");
     console.log(response.data);
     lineData.value = {
       labels: response.data.dailyRevenue.map((item) => item._id),
@@ -105,7 +105,7 @@ const getDailyRevenue = async () => {
 const totalRevenue = ref("")
 const getTotalRevenue = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/total-revenue");
+    const response = await axios.get("https://qdumy-server.onrender.com/api/total-revenue");
     console.log(response.data.totalRevenue);
     totalRevenue.value = response.data.totalRevenue
   } catch (err) {
@@ -114,7 +114,7 @@ const getTotalRevenue = async () => {
 }
 
 const getUserGrowth = async () => {
-  const response = await axios.get("http://localhost:3000/api/admin/user-growth")
+  const response = await axios.get("https://qdumy-server.onrender.com/api/admin/user-growth")
 barDataUsers.value = {
   labels: response.data.dailyUsers.map(label =>label._id),
   datasets: [
@@ -129,7 +129,7 @@ barDataUsers.value = {
 }
 
 const getWeeklyEnrollments = async () => {
-  const response = await axios.get("http://localhost:3000/api/admin/weekly-enrollments")
+  const response = await axios.get("https://qdumy-server.onrender.com/api/admin/weekly-enrollments")
 barDataEnrollments.value = {
   labels: response.data.weeklyEnrollments.map(label => formatDay(label._id)),
   datasets: [

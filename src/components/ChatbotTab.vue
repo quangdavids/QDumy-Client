@@ -22,7 +22,7 @@ const getGeminiRecommendation = async () => {
     });
 
     const response = await axios.post(
-      `http://localhost:3000/api/ai/recommend/${user.value._id}`,
+      `https://qdumy-server.onrender.com/api/ai/recommend/${user.value._id}`,
       { message: userInput.value }
     );
     console.log(response.data);
@@ -34,7 +34,7 @@ const getGeminiRecommendation = async () => {
 
 const getMessages = async () => {
   const response = await axios.get(
-    `http://localhost:3000/api/ai/messages/${user.value._id}`
+    `https://qdumy-server.onrender.com/api/ai/messages/${user.value._id}`
   );
   console.log(response.data);
   messages.value = response.data.messages;
