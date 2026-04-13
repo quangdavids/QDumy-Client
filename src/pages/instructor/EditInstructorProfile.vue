@@ -132,7 +132,7 @@ const editLecturerInfo = async () => {
     }
 
     const response = await axios.put(
-      `https://qdumy-server.onrender.com/lecturer/${userId}`,
+      `https://qdumy-server.onrender.com/api/lecturer/${userId}`,
       formData,
       {
         headers: {
