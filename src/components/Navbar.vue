@@ -19,7 +19,7 @@ let results = ref([]);
 const router = useRouter();
 let menuOpen = ref(false);
 const isMobileMenuOpen = ref(false);
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const cartCount = computed(() => cartCourses.value?.length || 0);
 const unread = computed(() => unreadCount.value || 0);
 const signOut = async function () {
@@ -50,8 +50,9 @@ const handleSearch = async (e) => {
 const createLecturer = async (lecturerId) => {
   try {
     const response = await axios.post(
-      `https://qdumy-server.onrender.com/api/lecturer/${lecturerId}`,
+      `${apiUrl}/api/lecturer/${lecturerId}`,
     );
+    await getLecturerStatus()
     status.value = true;
     router.push({
       path: "/instructor",
@@ -86,7 +87,7 @@ const lecturer = ref("");
 const getLecturerStatus = async () => {
   try {
     const response = await axios.get(
-      `https://qdumy-server.onrender.com/api/lecturer/${user.value._id}`,
+      `${apiUrl}/api/lecturer/${user.value._id}`,
     );
     if (response.status === 200 && response.data.lecturer) {
       status.value = true;

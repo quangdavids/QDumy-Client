@@ -30,7 +30,7 @@ ChartJS.register(
 );
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const completedCourse = ref(0);
 const ongoingCourse = ref(0);
 const totalCourses = ref(0);
@@ -46,7 +46,7 @@ const barData = ref({
 
 const getAnalyticData = async () => {
   const response = await axios.get(
-    `https://qdumy-server.onrender.com/api/user/analytic/${user.value._id}`,
+    `${apiUrl}/api/user/analytic/${user.value._id}`,
   );
 
   console.log(response);
@@ -71,7 +71,7 @@ const progress = ref("");
 const getCompletedAndRemainingLessonsData = async () => {
   try {
     const response = await axios.get(
-      `https://qdumy-server.onrender.com/api/user/lesson-comparison/${user.value._id}`,
+      `${apiUrl}/api/user/lesson-comparison/${user.value._id}`,
     );
     progress.value = response.data;
     completed.value = response.data.completed;

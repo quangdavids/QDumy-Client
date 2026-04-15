@@ -14,8 +14,9 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async register(data) {
       try {
+        const apiUrl = import.meta.env.VITE_API_URL;
         const response = await axios.post(
-          "https://qdumy-server.onrender.com/auth/register",
+          `${apiUrl}/auth/register`,
           data,
           { withCredentials: true }
         );
@@ -35,8 +36,9 @@ export const useAuthStore = defineStore("auth", {
     },
     async signIn(data) {
       try {
+        const apiUrl = import.meta.env.VITE_API_URL;
         const response = await axios.post(
-          "https://qdumy-server.onrender.com/auth/login",
+          `${apiUrl}/auth/login`,
           data,
            { withCredentials: true }
         );
@@ -72,8 +74,9 @@ export const useAuthStore = defineStore("auth", {
     },
     async logout() {
       try {       
+        const apiUrl = import.meta.env.VITE_API_URL;
         const response = await axios.post(
-        "https://qdumy-server.onrender.com/auth/logout",
+        `${apiUrl}/auth/logout` ,
         {},
         { 
           withCredentials: true,
@@ -92,8 +95,9 @@ export const useAuthStore = defineStore("auth", {
     },
     async refreshToken() {
       try {
+        const apiUrl = import.meta.env.VITE_API_URL;
         const response = await axios.post(
-          "https://qdumy-server.onrender.com/auth/refresh-token",
+          `${apiUrl}/auth/refresh-token`,
           {},
           { withCredentials: true }
         );

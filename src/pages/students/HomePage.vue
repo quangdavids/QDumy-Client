@@ -15,13 +15,13 @@ import axios from "axios";
 import { useCourseStore } from "../../stores/course.store";
 import CourseDetails from "./CourseDetails.vue";
 register();
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const modules = [EffectCoverflow, Pagination, Navigation];
 const route = useRouter();
 const latestCourses = ref([]);
 
 const getLatest = async () => {
-  const response = await axios.get("https://qdumy-server.onrender.com/api/courses/latest");
+  const response = await axios.get(`${apiUrl}/api/courses/latest`);
   latestCourses.value = response.data.courses;
   console.log(latestCourses.value)
 };

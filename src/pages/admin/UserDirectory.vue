@@ -11,10 +11,10 @@ const router = useRouter()
 const limit = ref(6);
 const totalPages = ref(1)
 const currentPage = ref(1)
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const getAllUsers = async () => {
   try {
-    const response = await axios.get(`https://qdumy-server.onrender.com/api/user/all/?page=${currentPage.value}&limit=${limit.value}` );
+    const response = await axios.get(`${apiUrl}/api/user/all/?page=${currentPage.value}&limit=${limit.value}` );
     users.value = response.data.users;
     totalUsers.value = response.data.totalUsers;
     totalPages.value = response.data.totalPages
@@ -41,7 +41,7 @@ const changePage = (newPage) => {
 
 const blockUser = async (userId) => {
   try {
-    const response = await axios.put(`https://qdumy-server.onrender.com/api/admin/block/${userId}`)
+    const response = await axios.put(`${apiUrl}/api/admin/block/${userId}`)
     console.log(response.data)
     getAllUsers()
   } catch (err) {
@@ -51,7 +51,7 @@ const blockUser = async (userId) => {
 
 const deleteUser = async (userId) => {
   try {
-    const response = await axios.delete(`https://qdumy-server.onrender.com/api/admin/delete-user/${userId}`)
+    const response = await axios.delete(`${apiUrl}/api/admin/delete-user/${userId}`)
     console.log(response.data)
     getAllUsers()
   } catch (err) {

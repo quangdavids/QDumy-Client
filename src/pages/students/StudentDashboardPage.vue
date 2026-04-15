@@ -14,11 +14,12 @@ const route = useRoute();
 const id = route.params.userId;
 const userInfo = ref();
 console.log(id)
+const apiUrl = import.meta.env.VITE_API_URL;
 const getUserInfo = async () => {
   try {
     if (id) {
       const response = await axios.get(
-        `https://qdumy-server.onrender.com/api/user/info/${id}`,
+        `${apiUrl}/api/user/info/${id}`,
       );
       userInfo.value = response.data.userData;
       console.log(userInfo.value);

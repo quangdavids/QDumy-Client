@@ -14,6 +14,7 @@ const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
 const router = useRouter()
 const isCloseChatbot = ref(false)
+const apiUrl = import.meta.env.VITE_API_URL;
 const getGeminiRecommendation = async () => {
   if (userInput.value.trim()) {
     messages.value.push({
@@ -22,7 +23,7 @@ const getGeminiRecommendation = async () => {
     });
 
     const response = await axios.post(
-      `https://qdumy-server.onrender.com/api/ai/recommend/${user.value._id}`,
+      `${apiUrl}/api/ai/recommend/${user.value._id}`,
       { message: userInput.value }
     );
     console.log(response.data);
@@ -34,7 +35,7 @@ const getGeminiRecommendation = async () => {
 
 const getMessages = async () => {
   const response = await axios.get(
-    `https://qdumy-server.onrender.com/api/ai/messages/${user.value._id}`
+    `${apiUrl}/api/ai/messages/${user.value._id}`
   );
   console.log(response.data);
   messages.value = response.data.messages;

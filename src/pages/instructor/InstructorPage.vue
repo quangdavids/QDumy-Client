@@ -19,10 +19,11 @@ const isOpen = ref(false);
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
 const lecturerData = ref("");
+const apiUrl = import.meta.env.VITE_API_URL;
 const getLecturer = async () => {
   try {
     const response = await axios.get(
-      `https://qdumy-server.onrender.com/api/lecturer-data/${user.value._id}`,
+      `${apiUrl}/api/lecturer-data/${user.value._id}`,
     );
     lecturerData.value = response.data.lecturer;
     console.log(response.data);

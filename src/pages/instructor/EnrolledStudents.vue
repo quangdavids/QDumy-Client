@@ -14,10 +14,10 @@ const isLoading = ref(false)
 const getLecturerCourseInfo = async () => {
   try {
     const lecturerInfo = await axios.get(
-      `https://qdumy-server.onrender.com/api/lecturer/${user.value._id}`,
+      `${apiUrl}/api/lecturer/${user.value._id}`,
     );
     const response = await axios.get(
-      `https://qdumy-server.onrender.com/api/courses/list/${lecturerInfo.data.lecturer}`,
+      `${apiUrl}/api/courses/list/${lecturerInfo.data.lecturer}`,
     );
     courses.value = response.data.courses;
     console.log(response.data.courses);
@@ -31,12 +31,13 @@ const currentPage = ref(1);
 const limit = ref(6);
 const totalStudents = ref("");
 const totalPages = ref(1);
+const apiUrl = import.meta.env.VITE_API_URL;
 const getStudentsByCourse = async () => {
   if (!selectedCourseId.value) return;
   isLoading.value = true
   try {
     const response = await axios.get(
-      `https://qdumy-server.onrender.com/api/lecturer/students-by-courses/${selectedCourseId.value}?page=${currentPage.value}&limit=${limit.value}`,
+      `${apiUrl}/api/lecturer/students-by-courses/${selectedCourseId.value}?page=${currentPage.value}&limit=${limit.value}`,
     );
     students.value = response.data.students;
     // currentPage.value = response.data.currentPage;

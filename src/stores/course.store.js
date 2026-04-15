@@ -46,25 +46,5 @@ export const useCourseStore = defineStore("course", {
     loadCourseData() {
       console.log(this.course)
     },
-
-    async createCourse() {
-      try {
-        const data = { ...this.course }
-        console.log(data)
-        const response = await axios.post(
-          "https://qdumy-server.onrender.com/api/courses/",
-          data,
-          // {
-          //   headers: {
-          //     "Content-Type": "multipart/form-data",
-          //   },
-          // }
-        );
-
-        console.log(response.data);
-      } catch (e) {
-        console.log(e);
-      }
-    },
   },
 });

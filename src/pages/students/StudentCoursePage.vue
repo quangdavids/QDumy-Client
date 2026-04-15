@@ -10,8 +10,9 @@ const { user } = storeToRefs(authStore);
 const courses = ref([]);
 const lecturer = ref([])
 const router = useRouter()
+const apiUrl = import.meta.env.VITE_API_URL;
 const getEnrolledCourses = async () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  
   const response = await axios.get(
     `${apiUrl}/api/courses/owned/${user.value._id}`,
   );
@@ -36,7 +37,7 @@ const isSearched = ref(false)
 const queryCourses = ref([])
 const searchCourse = async (req, res) => {
   try {
-    const response = await axios.get(`https://qdumy-server.onrender.com/api/courses/search/${user.value._id}?courseQuery=${searchQuery.value}`,
+    const response = await axios.get(`${apiUrl}/api/courses/search/${user.value._id}?courseQuery=${searchQuery.value}`,
     )
     queryCourses.value = response.data.courses
     if (searchQuery.value.length === 0) {

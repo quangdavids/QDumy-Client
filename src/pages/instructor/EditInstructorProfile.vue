@@ -10,7 +10,7 @@ const isLoading = ref(false);
 const successMessage = ref("");
 const error = ref("");
 const originalProfilePic = ref("");
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const toggleMore = () => {
   showMore.value = !showMore.value;
 };
@@ -42,7 +42,7 @@ onMounted(async () => {
     }
 
     const response = await axios.get(
-      `https://qdumy-server.onrender.com/api/lecturer-data/${userId}`,
+      `${apiUrl}/api/lecturer-data/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${authStore.token}`,
@@ -132,7 +132,7 @@ const editLecturerInfo = async () => {
     }
 
     const response = await axios.put(
-      `https://qdumy-server.onrender.com/api/lecturer/${userId}`,
+      `${apiUrl}/api/lecturer/${userId}`,
       formData,
       {
         headers: {

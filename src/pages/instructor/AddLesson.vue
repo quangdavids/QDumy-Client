@@ -9,7 +9,7 @@ const recordedChunks = ref([]);
 const mediaRecorder = ref(null);
 const stream = ref(null);
 const recordingPreview = ref(null);
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const startRecording = async () => {
   error.value = "";
   try {
@@ -99,7 +99,7 @@ const getLessonDetails = async () => {
   
   try {
     isEditMode.value = true;
-    const response = await axios.get(`https://qdumy-server.onrender.com/api/courses/${lessonId}/lessons/details`);
+    const response = await axios.get(`${apiUrl}/api/courses/${lessonId}/lessons/details`);
     lessonDetail.value = response.data.lesson;
     lessonTitle.value = lessonDetail.value.title;
     lessonDescription.value = lessonDetail.value.content;
@@ -174,7 +174,7 @@ const addLesson = async () => {
     if (isEditMode.value && lessonId && courseId) {
       // Update existing lesson
       response = await axios.put(
-        `https://qdumy-server.onrender.com/api/${courseId}/lessons/${lessonId}`,
+        `${apiUrl}/api/${courseId}/lessons/${lessonId}`,
         formData,
         {
           headers: { 
@@ -192,7 +192,7 @@ const addLesson = async () => {
     } else {
       // Create new lesson
       response = await axios.post(
-        `https://qdumy-server.onrender.com/api/courses/${courseId}/lessons`,
+        `${apiUrl}/api/courses/${courseId}/lessons`,
         formData,
         {
           headers: { 
