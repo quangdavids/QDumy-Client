@@ -1,7 +1,7 @@
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { RouterLink, useRouter, useRoute } from "vue-router";
-import { ref, onMounted, computed, onUpdated } from "vue";
+import { ref, onMounted, computed, onUpdated, watch } from "vue";
 import { useAuthStore } from "../stores/auth.store";
 import { useCartStore } from "../stores/cart.store";
 import { useNotificationStore } from "../stores/notification.store";
@@ -19,7 +19,7 @@ let results = ref([]);
 const router = useRouter();
 let menuOpen = ref(false);
 const isMobileMenuOpen = ref(false);
-const apiUrl = import.meta.env.VITE_API_URL;
+
 const cartCount = computed(() => cartCourses.value?.length || 0);
 const unread = computed(() => unreadCount.value || 0);
 const signOut = async function () {
@@ -50,10 +50,9 @@ const handleSearch = async (e) => {
 const createLecturer = async (lecturerId) => {
   try {
     const response = await axios.post(
-      `${apiUrl}/api/lecturer/${lecturerId}`,
+      `http://localhost:3000/api/lecturer/${lecturerId}`,
     );
-    await getLecturerStatus()
-    status.value = true;
+    await getLecturerStatus();
     router.push({
       path: "/instructor",
       params: lecturerId,
@@ -86,8 +85,12 @@ const status = ref(false);
 const lecturer = ref("");
 const getLecturerStatus = async () => {
   try {
+    if (!user.value || !user.value._id) {
+      status.value = false;
+      return;
+    }
     const response = await axios.get(
-      `${apiUrl}/api/lecturer/${user.value._id}`,
+      `http://localhost:3000/api/lecturer/${user.value._id}`,
     );
     if (response.status === 200 && response.data.lecturer) {
       status.value = true;
@@ -118,6 +121,13 @@ onMounted(() => {
     }, 2000);
   }
   getLecturerStatus();
+});
+
+// Watch for user changes to update lecturer status
+watch(() => user.value, () => {
+  if (user.value) {
+    getLecturerStatus();
+  }
 });
 
 
@@ -180,7 +190,7 @@ console.log(user);
               @click="toLecturer(user._id)"
               class="hover:text-green-600 transition-colors cursor-pointer text-sm font-medium"
             >
-              To Lecturer Area
+              Lecturer Area
             </div>
 
             <!-- Cart -->
