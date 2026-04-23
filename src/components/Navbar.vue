@@ -175,7 +175,7 @@ console.log(user);
             </div>
           </form>
 
-          <div v-if="isAuthenticated" class="flex items-center justify-end space-x-8 ml-8">
+          <div  class="flex items-center justify-end space-x-8 ml-8">
             <!-- Become a Lecturer -->
 
             <div
@@ -267,7 +267,7 @@ console.log(user);
                             ></i>
                           </div>
                           <div class="text-sm w-full">
-                            Kha Banh mentioned you in a message
+                            {{ notification.message }}
                           </div>
 
                           <div
