@@ -12,7 +12,6 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import axios from "axios";
-import { useCourseStore } from "../../stores/course.store";
 import CourseDetails from "./CourseDetails.vue";
 register();
 const apiUrl = import.meta.env.VITE_API_URL;
