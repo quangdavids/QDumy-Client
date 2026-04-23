@@ -41,6 +41,12 @@ const handleSearch = async (e) => {
         query: { query: searchQuery.value },
       });
       isMobileMenuOpen.value = false;
+    } else  {
+        await router.push({
+        path: "/course/search",
+        query: {query: searchQuery.value}
+      });
+      isMobileMenuOpen.value = false;
     }
   } catch (error) {
     console.error(`Error: ${error}`);
