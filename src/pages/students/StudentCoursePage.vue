@@ -76,7 +76,7 @@ onMounted(getEnrolledCourses);
     class="grid lg:grid-cols-3 grid-cols-2 sm:grid-cols-1 max-[640px]:grid-cols-1 container mx-auto justify-between p-3 space-y-2 space-x-3">
     <CourseCard v-for="course in courses" :key="course._id" 
       :title=course.title
-      :lecturer="course.lecturerName" 
+      :lecturer="course.lecturerId?.lecturerName" 
       :images=course.courseImage 
       owned-status="true" 
       :progress="course.progressPercent"
@@ -87,7 +87,7 @@ onMounted(getEnrolledCourses);
     v-else-if = "isSearched"
     class="grid lg:grid-cols-3 grid-cols-2 sm:grid-cols-1 max-[640px]:grid-cols-1 container mx-auto justify-between p-3 space-y-2 space-x-3">
     <CourseCard v-for="course in queryCourses" :key="course._id" :title=course.title
-      :lecturer="course.lecturerName" :images=course.courseImage owned-status="true" :progress="course.progressPercent"
+      :lecturer="course.lecturerId?.lecturerName" :images=course.courseImage owned-status="true" :progress="course.progressPercent"
       @click="handleNavigation(course._id)" />
   </div>
 </template>
