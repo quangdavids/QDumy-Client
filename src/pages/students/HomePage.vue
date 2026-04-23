@@ -279,6 +279,7 @@ const handleNavigation = function (id) {
         :price="course.price"
         :title="course.title"
         :description="course.description"
+        :lecturer="course.lecturerId.lecturerName"
         :images="course.courseImage"
         :rating="course.rating"
         :no-of-lessons="course.lessons.length"
