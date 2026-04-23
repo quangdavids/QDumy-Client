@@ -175,8 +175,9 @@ console.log(user);
             </div>
           </form>
 
-          <div class="flex items-center justify-end space-x-8 ml-8">
+          <div v-if="isAuthenticated" class="flex items-center justify-end space-x-8 ml-8">
             <!-- Become a Lecturer -->
+
             <div
               v-if="!status"
               class="hover:text-green-600 transition-colors cursor-pointer text-sm font-medium"
@@ -192,6 +193,7 @@ console.log(user);
             >
               Lecturer Area
             </div>
+         
 
             <!-- Cart -->
             <RouterLink
