@@ -148,8 +148,11 @@ onMounted(() => {
               </div>
             </td>
             <td>
-              <div class="bg-blue-200 rounded-lg text-center py-1">
+              <div v-if="!user.isLecturer" class="bg-blue-200 rounded-lg text-center py-1">
                 <p class="text-blue-700 font-semibold tracking-wide capitalize">{{ user.role }}</p>
+              </div>
+              <div v-else class="bg-red-200 rounded-lg text-center py-1">
+                <p class="text-red-700 font-semibold tracking-wide capitalize"> Lecturer </p>
               </div>
             </td>
             <td class="text-center">
