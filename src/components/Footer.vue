@@ -1,8 +1,12 @@
 <script setup>
+import { useAuthStore } from '../stores/auth.store';
+import { storeToRefs } from 'pinia';
+
+const authStore = useAuthStore()
+const { isAuthenticated } = storeToRefs(authStore)
 </script>
 
 <template>
-  <!-- Your Footer (with improvements) -->
         <footer class="mt-auto"> 
             <div class="bg-black text-white w-full px-12 py-8">
                 <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-screen-xl w-full place-items-start mx-auto gap-6">
@@ -19,17 +23,17 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-4">
+                   <div class="flex flex-col gap-4">
                         <p class="font-bold text-2xl">Quick Links</p>
-                        <a href="#" class="hover:border-b border-white transition-colors cursor-pointer">About Us</a>
-                        <a href="#" class="hover:border-b border-white transition-colors cursor-pointer">Contact</a>
-                        <a href="#" class="hover:border-b border-white transition-colors cursor-pointer">FAQ</a>
+                        <a href="/AboutUs" class="hover:border-b border-white transition-colors cursor-pointer">About Us</a>
+                        <a href="/contact" class="hover:border-b border-white transition-colors cursor-pointer">Contact</a>
+                        <a href="/support" class="hover:border-b border-white transition-colors cursor-pointer">FAQ</a>
                     </div>
 
-                    <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-4" v-if="isAuthenticated">
                         <p class="font-bold text-2xl">Your Account</p>
-                        <a href="#" class="hover:border-b border-white transition-colors cursor-pointer">Your Profile</a>
-                        <a href="#" class="hover:border-b border-white transition-colors cursor-pointer">Order History</a>
+                        <a href="/user/dashboard" class="hover:border-b border-white transition-colors cursor-pointer">Your Profile</a>
+                        <a href="/cart" class="hover:border-b border-white transition-colors cursor-pointer">My Cart</a>
                         <a href="#" class="hover:border-b border-white transition-colors cursor-pointer">Checkout</a>
                     </div>
 
