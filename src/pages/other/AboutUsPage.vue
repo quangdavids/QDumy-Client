@@ -11,7 +11,7 @@ const value = ref(50);
   
 <div class="relative w-full h-100 overflow-hidden">
   <!-- Background Video -->
-  <img src="/images/teacher2.jpg" class="w-auto object-cover brightness-50">
+  <img src="/images/teacher2.jpg" class="w-screen object-cover brightness-50">
   <!-- Overlay Content -->
   <div class="absolute inset-0 flex flex-col items-center justify-center gap-5 text-white text-center z-10">
     <h1 class="text-[30px] font-bold leading-tight">Our Vision</h1>
