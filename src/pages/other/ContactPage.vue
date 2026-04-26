@@ -79,7 +79,7 @@
                         <br></br>
                         <input type="text" class=" rounded-lg mb-4  p-2 w-full bg-gray-100"></input>
                         
-                        <label for="name"> Email:</label>
+                        <label for="name"> Message:</label>
                         <textarea type="text" class=" rounded-lg  h-40 w-full bg-gray-100"></textarea>
                    <button class="p-3 text-center mt-3 bg-black text-white font-bold w-full rounded-md"> Submit Form</button>
                     </form>
