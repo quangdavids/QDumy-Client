@@ -7,7 +7,7 @@ import AboutUsPage from "../pages/other/AboutUsPage.vue";
 import CourseDetails from "../pages/students/CourseDetails.vue";
 import Cart from "../pages/students/Cart.vue";
 import PaymentSuccess from "../pages/other/PaymentSuccess.vue";
-import PaymentCancel from "../pages/other/PaymentCancel.vue";
+
 import StudentCoursePage from "../pages/students/StudentCoursePage.vue";
 import SearchCourse from "../pages/students/SearchCoursePage.vue";
 import VideoLearningPage from "../pages/students/VideoLearningPage.vue";
@@ -62,9 +62,6 @@ const routes = [
      meta: { hideFooter: true, showChatbot: true },
    },
    { path: "/payment-success", component: PaymentSuccess,
-     meta: { hideNavbar: true, hideFooter: true }
-   },
-   { path: "/payment-cancel", component: PaymentCancel,
      meta: { hideNavbar: true, hideFooter: true }
    },
    { path: "/contact", component: ContactPage, meta: {showChatbot: true}},

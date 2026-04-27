@@ -49,8 +49,7 @@ onMounted(async () => {
 
     // Clear cart after successful payment
     await cartStore.fetchCourses();
-    // You might want to add a clearCart action to the store
-
+    
     loading.value = false;
   } catch (err) {
     console.error("Error verifying payment:", err);
