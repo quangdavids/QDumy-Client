@@ -7,11 +7,11 @@ import AboutUsPage from "../pages/other/AboutUsPage.vue";
 import CourseDetails from "../pages/students/CourseDetails.vue";
 import Cart from "../pages/students/Cart.vue";
 import PaymentSuccess from "../pages/other/PaymentSuccess.vue";
-
+import PaymentCancel from "../pages/other/PaymentCancel.vue";
 import StudentCoursePage from "../pages/students/StudentCoursePage.vue";
 import SearchCourse from "../pages/students/SearchCoursePage.vue";
 import VideoLearningPage from "../pages/students/VideoLearningPage.vue";
-import InstuctorDashboard from "../pages/instructor/InstructorDashboard.vue"
+import InstuctorDashboard from "../pages/instructor/InstructorDashboard.vue";
 import CreateCourse from "../pages/instructor/InstructorCourseList.vue";
 import InstructorProfile from "../pages/instructor/EditInstructorProfile.vue";
 import StudentProfilePage from "../pages/students/StudentProfilePage.vue";
@@ -33,18 +33,22 @@ import UserDirectory from "../pages/admin/UserDirectory.vue";
 import CourseApproval from "../pages/admin/CourseApproval.vue";
 import { useAuthStore } from "../stores/auth.store";
 const routes = [
-  { path: "/", component: HomePage, meta: {showChatbot: true} },
-  { path: "/home", component: HomePage, meta: {showChatbot: true} },
-  { path: "/login", component: LoginPage, meta: {hideFooter:true}  },
-  { path: "/register", component: RegisterPage,  meta: {hideFooter:true} },
+  { path: "/", component: HomePage, meta: { showChatbot: true } },
+  { path: "/home", component: HomePage, meta: { showChatbot: true } },
+  { path: "/login", component: LoginPage, meta: { hideFooter: true } },
+  { path: "/register", component: RegisterPage, meta: { hideFooter: true } },
   // meta:
   // {
   //   hideNavbar: true,
   //   hideFooter: true,
 
   // }
-  { path: "/aboutUs", component: AboutUsPage, meta: {showChatbot: true} },
-  { path: "/course/search", component: SearchCourse, meta: {showChatbot: true} },
+  { path: "/aboutUs", component: AboutUsPage, meta: { showChatbot: true } },
+  {
+    path: "/course/search",
+    component: SearchCourse,
+    meta: { showChatbot: true },
+  },
   {
     path: "/course/:courseId/lecture",
     name: "CourseLecture",
@@ -56,32 +60,40 @@ const routes = [
   //   meta: {hideFooter: true}
   // },
   { path: "/instructor/profile/:lecturerId", component: InstructorProfile },
-  
-  { path: "/cart", component: Cart, meta: {showChatbot: true} },
-  { path: "/checkout", component: Checkout,
-     meta: { hideFooter: true, showChatbot: true },
-   },
-   { path: "/payment-success", component: PaymentSuccess,
-     meta: { hideNavbar: true, hideFooter: true }
-   },
-   { path: "/contact", component: ContactPage, meta: {showChatbot: true}},
+
+  { path: "/cart", component: Cart, meta: { showChatbot: true } },
+  {
+    path: "/checkout",
+    component: Checkout,
+    meta: { hideFooter: true, showChatbot: true },
+  },
+  {
+    path: "/payment-success",
+    component: PaymentSuccess,
+    meta: { hideNavbar: true, hideFooter: true },
+  },
+  {
+    path: "/payment-cancel",
+    component: PaymentCancel,
+    meta: { hideNavbar: true, hideFooter: true },
+  },
+  { path: "/contact", component: ContactPage, meta: { showChatbot: true } },
   {
     path: "/support",
-    component:  HelpSupport,
-    meta: {showChatbot: true}
-    
+    component: HelpSupport,
+    meta: { showChatbot: true },
   },
 
   {
     path: "/admin",
     component: AdminPage,
-    meta: {hideNavbar: true, requiresAuth: true, role: 'admin'},
+    meta: { hideNavbar: true, requiresAuth: true, role: "admin" },
     children: [
-      {path: "", component: OverviewPage},
-      {path: "overview", component: OverviewPage},
-      {path: "user-directory", component: UserDirectory},
-      {path: "course-approval", component: CourseApproval}
-    ]
+      { path: "", component: OverviewPage },
+      { path: "overview", component: OverviewPage },
+      { path: "user-directory", component: UserDirectory },
+      { path: "course-approval", component: CourseApproval },
+    ],
   },
   { path: "/course/:id", component: CourseDetails, props: true },
   {
@@ -96,7 +108,6 @@ const routes = [
       { path: "profile", component: StudentProfilePage },
     ],
   },
-   
 
   {
     path: "/instructor",
@@ -105,10 +116,9 @@ const routes = [
     children: [
       { path: "course", component: CreateCourse },
       { path: "", component: CreateCourse },
-      { path: "dashboard", component: InstuctorDashboard},
-      { path: "enrolled-students", component: EnrolledStudents},
+      { path: "dashboard", component: InstuctorDashboard },
+      { path: "enrolled-students", component: EnrolledStudents },
       { path: "profile", component: InstructorProfile },
-
 
       {
         path: "course/manage/",
@@ -118,7 +128,7 @@ const routes = [
 
       {
         path: "course/edit/:courseId/",
-        component:  CreateCoursePage,
+        component: CreateCoursePage,
         meta: { hideSidebar: true },
         // children: [
         //   { path: "requirements", component: LearnersAndRequirements },
@@ -136,16 +146,12 @@ const routes = [
         component: LessonListPage,
       },
 
-      
       {
         path: "course/edit-lesson/:lessonId/",
         component: AddLesson,
-       
       },
-
     ],
   },
-
 
   { path: "/:pathMatch(.*)*", component: NotFoundPage },
 ];
@@ -159,16 +165,13 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
   const userRole = authStore.user?.role;
 
- 
   if (to.meta.role && to.meta.role !== userRole) {
-   
-    if (to.meta.role === 'admin' && userRole !== 'admin') {
-      return next({ path: '/home' }); 
+    if (to.meta.role === "admin" && userRole !== "admin") {
+      return next({ path: "/home" });
     }
   }
 
-  next(); 
+  next();
 });
-
 
 export default router;
