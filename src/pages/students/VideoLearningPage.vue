@@ -1,7 +1,7 @@
 <script setup>
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref, computed, watch } from "vue";
 import { nextTick } from "vue";
 import { useRoute } from "vue-router";
 import { useAuthStore } from "../../stores/auth.store";
@@ -144,6 +144,14 @@ const videoPlaying = computed(() => {
   }
   return "";
 });
+
+watch(courseLessons, async (newLessons) => {
+  if (newLessons.length > 0 && videoRef.value) {
+    await nextTick();
+    videoRef.value.load();
+    videoRef.value.play();
+  }
+}, { once: true });
 
 const formatDuration = (seconds) => {
   const totalSeconds = Math.round(seconds);
